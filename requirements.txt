@@ -1,0 +1,23 @@
+# requirements.txt
+
+ipykernel           # Runs Jupyter notebooks
+pandas             # Data analysis and manipulation
+numpy            cls  # Numerical calculations
+matplotlib         # Data visualization (graphs, charts)
+plotly             # Interactive graphs
+seaborn            # Statistical plots with beautiful graphs
+scikit-learn       # Machine learning algorithms
+pymongo            # Connect Python with MongoDB
+from_root          # Access project folders easily from root directory
+dill               # Serialize Python objects (Save models or data)
+certifi            # Provides SSL certificates for HTTPS connections
+PyYAML             # Read and write YAML files (like config files)
+boto3              # Connect Python with AWS services (S3 Bucket)
+mypy-boto3-s3      # Type hints for AWS S3 services
+botocore           # Core library used by boto3 for AWS services
+fastapi            # Build APIs in Python
+python-multipart   # Upload files in FastAPI
+uvicorn            # Server to run FastAPI applications
+jinja2             # Create dynamic HTML templates
+imblearn           # Handle imbalanced datasets in ML
+-e .               # Install your own custom project as a package

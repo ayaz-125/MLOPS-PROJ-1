@@ -1,0 +1,11 @@
+[project]  # This section contains basic project information
+name = "src"  # Project name (same as your folder name)
+version = "0.0.1"  # Project version (starting version)
+description = "An MLOps project for productionizing models"  # Short project description
+authors = [{name = "Ayaz Rabbani", email = "ayazr425@gmail.com"}]  # Your name and email as author details
+
+[tool.setuptools]  # This section is used to configure setuptools
+packages = {find = {}}  # Automatically detects all folders that contain __init__.py files and treats them as packages
+
+[tool.setuptools.dynamic]  # This section dynamically reads external dependencies
+dependencies = {file = "requirements.txt"}  # Reads dependencies from the requirements.txt file automatically
