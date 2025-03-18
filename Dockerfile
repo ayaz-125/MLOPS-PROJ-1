@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . /app
 
 # Set PYTHONPATH so Python can find the src module
-ENV PYTHONPATH=/app
+ENV PYTHONPATH="/app/src"
 
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
