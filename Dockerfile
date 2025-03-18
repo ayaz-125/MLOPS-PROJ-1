@@ -7,12 +7,14 @@ WORKDIR /app
 # Copy your application code
 COPY . /app
 
+# Set PYTHONPATH so Python can find the src module
+ENV PYTHONPATH=/app
+
 # Install the dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose the port FastAPI will run on
 EXPOSE 8000
 
 # Command to run the FastAPI app
-# CMD ["python3", "app.py"]
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
