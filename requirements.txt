@@ -2,7 +2,7 @@
 
 ipykernel           # Runs Jupyter notebooks
 pandas             # Data analysis and manipulation
-numpy            cls  # Numerical calculations
+numpy             # Numerical calculations
 matplotlib         # Data visualization (graphs, charts)
 plotly             # Interactive graphs
 seaborn            # Statistical plots with beautiful graphs
