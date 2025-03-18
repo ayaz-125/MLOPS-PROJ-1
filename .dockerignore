@@ -9,3 +9,11 @@ README.md
 LICENSE
 src.egg.-info
 notebook
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.dockerignore
+.env
