@@ -77,4 +77,4 @@ MODEL_PUSHER_S3_KEY = "model-registry"  # Folder inside S3 bucket to store model
 
 # Flask App Constants
 APP_HOST = "0.0.0.0"  # Host to run Flask app publicly
-APP_PORT = 5000  # Port Number to run Flask App
+APP_PORT = 8000  # Port Number to run Flask App
