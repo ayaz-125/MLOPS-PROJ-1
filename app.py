@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
@@ -5,7 +6,6 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.responses import HTMLResponse, RedirectResponse
 from uvicorn import run as app_run
-import os
 
 from typing import Optional
 
@@ -143,6 +143,4 @@ async def predictRouteClient(request: Request):
 
 # Main entry point to start the FastAPI server
 if __name__ == "__main__":
-    # app_run(app, host=APP_HOST, port=APP_PORT)
-    port = int(os.environ.get("PORT", 8000))  # Default to 8000 but use Railway's assigned port
-    app_run(app, host="0.0.0.0", port=port)
+    app_run(app, host=APP_HOST, port=APP_PORT)

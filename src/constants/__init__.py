@@ -75,6 +75,5 @@ MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE: float = 0.02  # Minimum model performa
 MODEL_BUCKET_NAME = "my-model-mlopsproj14"  # AWS S3 bucket name to store models
 MODEL_PUSHER_S3_KEY = "model-registry"  # Folder inside S3 bucket to store models
 
-# Flask App Constants
-APP_HOST = "0.0.0.0"  # Host to run Flask app publicly
-APP_PORT = 8000  # Port Number to run Flask App
+APP_HOST = "0.0.0.0"
+APP_PORT = 5000
