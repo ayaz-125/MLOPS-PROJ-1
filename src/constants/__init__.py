@@ -76,4 +76,4 @@ MODEL_BUCKET_NAME = "my-model-mlopsproj14"  # AWS S3 bucket name to store models
 MODEL_PUSHER_S3_KEY = "model-registry"  # Folder inside S3 bucket to store models
 
 APP_HOST = "0.0.0.0"
-APP_PORT = 5000
+APP_PORT = 5000  # This is where my application will run 

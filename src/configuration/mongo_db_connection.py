@@ -9,10 +9,10 @@ from src.constants import DATABASE_NAME, MONGODB_URL_KEY  # Project constants
 
 # Load SSL certificate to avoid connection timeout errors
 import certifi
-ca = certifi.where()
+# ca = certifi.where()
 # client = MongoClient(MONGODB_URL_KEY, tlsCAFile=ca)
 
-# ca = certifi.where()  # This line automatically finds the CA certificate file
+ca = certifi.where()  # This line automatically finds the CA certificate file
 
 class MongoDBClient:
     """
@@ -48,7 +48,7 @@ class MongoDBClient:
                     raise Exception(f"Environment variable '{MONGODB_URL_KEY}' is not set.")
                 
                 # Step 3: Create MongoDB Client
-                MongoDBClient.client = pymongo.MongoClient(mongo_db_url, tlsCAFile=ca,serverSelectionTimeoutMS=50000)
+                MongoDBClient.client = pymongo.MongoClient(mongo_db_url, tlsCAFile=ca,serverSelectionTimeoutMS=100000)
                 logging.info("MongoDB Connection Created Successfully.")
 
             # Step 4: Use Shared MongoDB Connection
