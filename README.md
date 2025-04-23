@@ -135,7 +135,7 @@ sudo usermod -aG docker ubuntu
 ## 🌍 Final Deployment
 
 - CI/CD auto-triggers on `push to main`
-- Activate EC2 port 5080 via Inbound Rules
+- Activate EC2 port 5000 via Inbound Rules
 - Access your app: `http://<EC2-Public-IP>:5080`
 
 ---
@@ -145,7 +145,7 @@ sudo usermod -aG docker ubuntu
 | Category       | Tools/Services                                    |
 |----------------|---------------------------------------------------|
 | Programming    | Python 3.10                                       |
-| MLOps          | DVC, MLflow, GitHub Actions, Docker               |
+| MLOps          |  GitHub Actions, Docker               |
 | Data Storage   | MongoDB Atlas, AWS S3                             |
 | Deployment     | AWS EC2, ECR, IAM                                 |
 | Web Framework  | Flask                                             |
@@ -154,11 +154,6 @@ sudo usermod -aG docker ubuntu
 
 ---
 
-## 💡 Future Improvements
-
-- Add monitoring with Prometheus + Grafana
-- Improve UI with ReactJS or Streamlit
-- Integrate model explainability (SHAP)
 
 ---
 
