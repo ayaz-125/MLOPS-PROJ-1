@@ -1,133 +1,168 @@
-# Vehicle Data Processing and Model Training Pipeline
+# 🚗 Vehicle Insurance Premium Prediction - End-to-End MLOps Project
 
-## Project Overview
-This project involves setting up a complete pipeline for data ingestion, validation, transformation, model training, evaluation, and deployment using MongoDB, AWS, and CI/CD with Docker and GitHub Actions. The following steps provide a structured workflow for the implementation.
+This project demonstrates a **complete MLOps pipeline** for predicting vehicle insurance premiums using advanced tools and technologies like **MongoDB Atlas**, **AWS S3**, **EC2**, **ECR**, **Docker**, **GitHub Actions**, and a robust Python-based backend. It showcases real-world automation, orchestration, and deployment techniques with a focus on scalability and reproducibility.
 
 ---
 
-## 1. Project Setup
+## 📌 Project Highlights
 
-### Step 1: Create Project Template
-Run the following command to generate the project template:
+- ✅ Modular Python Codebase with custom `setup.py` and `pyproject.toml`
+- ✅ MongoDB Atlas for cloud-based data storage
+- ✅ Custom logging, exception handling, and configuration management
+- ✅ End-to-End ML Pipeline:
+  - Data Ingestion
+  - Data Validation
+  - Data Transformation
+  - Model Training
+  - Model Evaluation
+  - Model Pushing
+- ✅ Cloud Deployment using:
+  - Docker
+  - AWS ECR & EC2
+  - GitHub Actions (CI/CD)
+- ✅ Web App hosted via Flask on EC2 instance
+
+---
+
+## ⚙️ Project Setup
+
+### 1. 📁 Initial Template and Environment Setup
 ```bash
-python template.py
-```
-
-### Step 2: Configure `setup.py` and `pyproject.toml`
-Modify these files to import local packages.
-More details are available in `crashcourse.txt`.
-
-### Step 3: Setup Virtual Environment
-```bash
+python template.py  # To generate project structure
 conda create -n vehicle python=3.10 -y
 conda activate vehicle
 pip install -r requirements.txt
+pip list  # Verify packages
 ```
+Edit `setup.py` and `pyproject.toml` to use local modules. (More details in `crashcourse.txt`)
 
-### Step 4: Verify Installed Packages
+---
+
+## 🌐 MongoDB Atlas Setup
+1. Sign up at [MongoDB Atlas](https://www.mongodb.com/atlas)
+2. Create Cluster → Setup DB user + Network Access (0.0.0.0/0)
+3. Copy the connection string and set `MONGODB_URL` in your environment.
+4. Upload dataset to MongoDB using `mongoDB_demo.ipynb`.
+
+---
+
+## 📁 Notebooks, Logging & Exception Handling
+
+- 🧠 EDA and Feature Engineering in Jupyter notebooks
+- 📟 Custom logging module for all logs
+- ❗ Custom exception module for debugging
+
+---
+
+## 🔄 Data Ingestion to Model Trainer Pipeline
+
+- Define MongoDB config: `configuration.mongo_db_connections.py`
+- Setup ingestion logic: `data_access/`, `components/`, `entity/`, `pipeline/`
+- Add schema in `config/schema.yaml` for validation
+- Add transformers and trainer logic in:
+  - `components.data_validation.py`
+  - `components.data_transformation.py`
+  - `components.model_trainer.py`
+  - `entity/estimator.py`
+
+---
+
+## ☁️ AWS Integration
+
+### IAM + AWS CLI
 ```bash
-pip list
+export AWS_ACCESS_KEY_ID="xxx"
+export AWS_SECRET_ACCESS_KEY="xxx"
 ```
 
----
+### AWS S3 Setup
+- S3 Bucket: `my-model-mlopsproj`
+- Key: `model-registry`
 
-## 2. MongoDB Setup
-
-### Step 5: Create MongoDB Atlas Account and Cluster
-- Sign up for MongoDB Atlas.
-- Create a new project and cluster (M0 free tier).
-- Set up a database user and password.
-- Add `0.0.0.0/0` to Network Access.
-- Retrieve the connection string (`mongodb+srv://<username>:<password>@cluster.mongodb.net/`).
-
-### Step 6: Connect MongoDB to Jupyter Notebook
-- Create a `notebook` directory.
-- Add a dataset to this directory.
-- Use `mongoDB_demo.ipynb` to upload data.
-- Verify data in MongoDB Atlas under the Database Collections section.
+Configure S3 interaction in:
+- `configuration/aws_connection.py`
+- `aws_storage/`
+- `entity/s3_estimator.py`
 
 ---
 
-## 3. Logging and Exception Handling
+## ✅ Model Evaluation & Pushing
 
-### Step 7: Implement Logging and Exception Handling
-- Create `logger.py` and `exception.py`.
-- Test the setup using `demo.py`.
+- Evaluate and push model to S3 via `model_evaluation.py` and `model_pusher.py`
 
 ---
 
-## 4. Data Pipeline Setup
+## 🧪 Prediction Pipeline + Flask App
 
-### Step 8: Data Ingestion
-- Define MongoDB connection functions in `configuration.mongo_db_connections.py`.
-- Fetch and transform data using `data_access/proj1_data.py`.
-- Implement `DataIngestionConfig` and `DataIngestionArtifact` classes.
-- Run `demo.py` after setting up the MongoDB connection.
-
-```bash
-export MONGODB_URL="mongodb+srv://<username>:<password>@cluster.mongodb.net/"
-```
-
-### Step 9: Data Validation, Transformation, and Model Training
-- Define dataset schema in `config.schema.yaml`.
-- Implement validation, transformation, and model training similar to data ingestion.
-- Update `estimator.py` for model training.
+- `app.py`: Main web app
+- Routes:
+  - `/` - Prediction UI
+  - `/training` - Trigger model training
+- `templates/` and `static/` added for frontend
 
 ---
 
-## 5. AWS and S3 Configuration
+## 🚀 CI/CD with GitHub Actions + AWS
 
-### Step 10: AWS Setup
-- Sign in to AWS and create an IAM user (`firstproj`).
-- Attach `AdministratorAccess` policy.
-- Generate access keys and set environment variables:
-```bash
-export AWS_ACCESS_KEY_ID="<your-access-key>"
-export AWS_SECRET_ACCESS_KEY="<your-secret-key>"
-```
-- Create an S3 bucket (`my-model-mlopsproj`).
+### Docker Setup
+- Create `Dockerfile` and `.dockerignore`
 
-### Step 11: Implement AWS Connection
-- Configure `src.configuration.aws_connection.py` to interact with S3.
-- Implement `s3_estimator.py` for managing model storage.
+### GitHub Actions
+- Setup `.github/workflows/aws.yaml` for CI/CD
+- Secrets:
+  - `AWS_ACCESS_KEY_ID`
+  - `AWS_SECRET_ACCESS_KEY`
+  - `AWS_REGION`
+  - `ECR_REPO`
 
----
+### AWS Resources
+- 🐳 **ECR** for storing Docker images
+- 💻 **EC2 Ubuntu (t2.medium)** to deploy app
 
-## 6. CI/CD Pipeline with Docker and GitHub Actions
-
-### Step 12: Setup Docker and CI/CD
-- Create `Dockerfile` and `.dockerignore`.
-- Set up GitHub Actions workflow in `.github/workflows/aws.yaml`.
-- Create an ECR repository (`vehicleproj`).
-- Create an EC2 Ubuntu instance (`vehicledata-machine`).
-- Install Docker in EC2:
+### EC2 Setup
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
+sudo usermod -aG docker ubuntu
 ```
-- Configure EC2 as a GitHub self-hosted runner.
-- Add GitHub Secrets:
-  - `AWS_ACCESS_KEY_ID`
-  - `AWS_SECRET_ACCESS_KEY`
-  - `AWS_DEFAULT_REGION`
-  - `ECR_REPO`
 
-### Step 13: Deploy Application on EC2
-- Allow inbound traffic on port `5080` in EC2 Security Groups.
-- Access the app using `http://<EC2-Public-IP>:5080`.
+### Connect GitHub Self-Hosted Runner
+- Settings > Actions > Runners > Add Linux Runner
+- Follow setup commands on EC2 terminal
 
 ---
 
-## 7. Model Deployment
+## 🌍 Final Deployment
 
-### Step 14: Model Evaluation and Deployment
-- Implement model evaluation logic.
-- Deploy trained models via `Model Pusher`.
-- Enable model training via `/training` API endpoint.
+- CI/CD auto-triggers on `push to main`
+- Activate EC2 port 5080 via Inbound Rules
+- Access your app: `http://<EC2-Public-IP>:5080`
 
 ---
 
-## Summary
-This project establishes a complete MLOps pipeline integrating MongoDB, AWS, Docker, and GitHub Actions for automated model training and deployment. The CI/CD workflow ensures seamless integration and delivery.
+## 🛠 Tools & Technologies
 
-For any issues, refer to individual module documentation or raise an issue in the repository.
+| Category       | Tools/Services                                    |
+|----------------|---------------------------------------------------|
+| Programming    | Python 3.10                                       |
+| MLOps          | DVC, MLflow, GitHub Actions, Docker               |
+| Data Storage   | MongoDB Atlas, AWS S3                             |
+| Deployment     | AWS EC2, ECR, IAM                                 |
+| Web Framework  | Flask                                             |
+| Cloud Platform | Amazon Web Services                               |
+| Workflow       | CI/CD via GitHub Actions & Self-hosted Runner     |
+
+---
+
+## 💡 Future Improvements
+
+- Add monitoring with Prometheus + Grafana
+- Improve UI with ReactJS or Streamlit
+- Integrate model explainability (SHAP)
+
+---
+
+## 🙌 Let's Connect
+
+If you liked the project or have any suggestions, feel free to reach out!
+
