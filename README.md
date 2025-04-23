@@ -3,7 +3,7 @@
 This project demonstrates a **complete MLOps pipeline** for predicting vehicle insurance premiums using advanced tools and technologies like **MongoDB Atlas**, **AWS S3**, **EC2**, **ECR**, **Docker**, **GitHub Actions**, and a robust Python-based backend. It showcases real-world automation, orchestration, and deployment techniques with a focus on scalability and reproducibility.
 
 ---
-
+https://github.com/user-attachments/assets/9bc29bba-ae21-41d9-8048-ec5ebcb05265
 ## 📌 Project Highlights
 
 - ✅ Modular Python Codebase with custom `setup.py` and `pyproject.toml`
